@@ -1,1 +1,1 @@
-Техподдержка: <a href="http://nineseven.ru" target="_blank" rel="nofollow">Nineseven</a>
+Техподдержка: <a href="https://nineseven.by" target="_blank" rel="nofollow">Nineseven</a>
