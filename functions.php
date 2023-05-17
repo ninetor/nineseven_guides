@@ -119,4 +119,25 @@ function getIblockID($iblockCode)
 
     return $result;
 }
+
+// достает пути файлов по ID или массиву ID
+function getFilePath(string|int|array $id): array|string
+{
+    $uploadDir = \COption::GetOptionString(module_id: "main", name: "upload_dir", def: "upload");
+    $files = \Bitrix\Main\FileTable::getList([
+        'select' => ['ID', 'SUBDIR', 'FILE_NAME',],
+        'filter' => ['ID' => $id]
+    ]);
+    if (is_array($id)) {
+        $result = array_flip($id);
+        while ($file = $files->fetch()) {
+            $result[$file['ID']] = '/' . $uploadDir
+                . '/' . $file['SUBDIR'] . '/' . $file['FILE_NAME'];
+        }
+        return $result;
+    }
+    $file = $files->fetch();
+    return '/' . $uploadDir
+        . '/' . $file['SUBDIR'] . '/' . $file['FILE_NAME'];
+}
 ?>
